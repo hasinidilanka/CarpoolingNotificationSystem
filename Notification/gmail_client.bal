@@ -45,7 +45,6 @@ function createEmail(string recipient, string data) returns gmail:MessageRequest
     messageRequest.messageBody = data;
     messageRequest.contentType = gmail:TEXT_PLAIN;
     return messageRequest;
-
 }
 
 //Create a customer email template
@@ -53,7 +52,7 @@ function getCustomEmailTemplate(string messageBody) returns string {
 
     string emailTemplate = "Hi, \n";
     emailTemplate = emailTemplate + "Welcome to the location service! \n";
-    if (message.length() == 0) {
+    if (messageBody.length() == 0) {
         emailTemplate = emailTemplate + "Sorry to inform but there are no nearby friends for carpooling.\n";
     } else {
         emailTemplate = emailTemplate + "Below contains the available nearby friends for carpooling. \n";
@@ -61,5 +60,13 @@ function getCustomEmailTemplate(string messageBody) returns string {
     }
 
     return emailTemplate;
+}
 
+function createMessage(Person[] candidates) returns string{
+    string message ="";
+    foreach Person person in candidates {
+        message += person.getName()+" - "+person.getLocation()+" - "+person.getTelephone()+"\n";
+
+    }
+    return message;
 }
