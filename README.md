@@ -68,7 +68,7 @@ Following are the two different Ballerina connectors used in this system.
 - Create a Google Sheet as follows from the same Google account you have obtained the client credentials and tokens 
 to access both APIs.
 
-![Sample googlsheet created to identify people who are interesetd in sharing vehicles for carpooling](images/sheet.png)
+![Sample googlsheet created to identify people who are interesetd in sharing vehicles for carpooling](Images/sheet.png)
 
 - Obtain the spreadsheet id by extracting the value between the "/d/" and the "/edit" in the URL of your spreadsheet.
 
@@ -80,12 +80,12 @@ to access both APIs.
     ```
 - Use Postman tool or curl commands to send the request.
 
-![Sample request](images/postman_request.png)
+![Sample request](Images/postman_request.png)
 
 - Response from the Postman
 
-![Sample response](images/postman_response.png)
+![Sample response](Images/postman_response.png)
 
 - Notification sent to user via email
-![Sample email](images/email.png)
+![Sample email](Images/email.png)
 
