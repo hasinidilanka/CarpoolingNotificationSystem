@@ -2,7 +2,6 @@ import ballerina/io;
 import ballerina/log;
 
 string location ="maharagama";
-string url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=maharagama&destinations=kottawa|colombo|&key=AIzaSyATIXv5bZtzJXf_T9ee9IdU1QsKHFtDbXA";
 string destination = "";
 
 string[] locationArray = [];
