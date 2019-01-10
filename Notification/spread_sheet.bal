@@ -23,7 +23,7 @@ gsheets4:Client spreadsheetClient = new(spreadsheetConf);
 //Read all the values from the sheet.
 function getDetailsFromGSheet() returns string[][]|error {
 
-    var values = spreadsheetClient->getSheetValues(spreadsheetId, sheetName, topLeftCell = "A1", bottomRightCell = "D5");
+    var values = spreadsheetClient->getSheetValues(spreadsheetId, sheetName, topLeftCell = "A1", bottomRightCell = "D123");
     return values;
 }
 

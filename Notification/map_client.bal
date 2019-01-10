@@ -40,14 +40,12 @@ function getSelectedCandidates(string origin, string destination1,Person[] candi
     } else {
         var elements = payload.rows[0].elements;
         int j = 0;
-
+        int k = 0;
         //Read payload and get the durations from origin to destinations.
         while (j < elements.length()) {
             var duration = elements[j].duration.value;
             int|error durationValue = int.convert(duration.toString());
-            int k = 0;
             if (durationValue is int) {
-
                 //Check for destinations less than 1000 seconds.
                 if (durationValue < 1000) {
                     selectedCandidates[k] = candidates[j];
