@@ -30,7 +30,7 @@ function sendEmail( string recipient,  string messageBody) returns boolean {
         log:printInfo("Sent email to " + recipient);
         return true;
     } else {
-        log:printInfo("Unable to sent email to "+recipient);
+        log:printError("Unable to send email to "+recipient, err = sendMessageResponse);
         return false;
     }
 }
@@ -55,7 +55,7 @@ function getCustomEmailTemplate(string messageBody) returns string {
     if (messageBody.length() == 0) {
         emailTemplate = emailTemplate + "Sorry to inform but there are no nearby friends for carpooling.\n";
     } else {
-        emailTemplate = emailTemplate + "Below contains the available nearby friends for carpooling. \n";
+        emailTemplate = emailTemplate + "Please contact the below contacts for carpooling. \n";
         emailTemplate = emailTemplate + messageBody;
     }
     return emailTemplate;

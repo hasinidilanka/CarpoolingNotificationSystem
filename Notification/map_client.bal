@@ -9,8 +9,6 @@ function getDistanceMatrix(string origin, string destination1) returns json{
     var resp = directionClient->get("");
 
     if (resp is http:Response) {
-        io:println(resp);
-
         var payload = resp.getJsonPayload();
         if (payload is json) {
             string response = payload.status.toString();
@@ -18,18 +16,15 @@ function getDistanceMatrix(string origin, string destination1) returns json{
             //Check the status
             if (response == "OK") {
                 return payload;
-
             } else {
-                //log:printError(<string> payload.toString().detail().message);
+                log:printInfo("Response of the distance matrix api is wrong");
             }
 
         } else {
-
-            //log:printError(<string> payload.detail().message);
+            log:printError("Payload is not json type", err = payload);
         }
     } else {
-
-        log:printError(<string> resp.detail().message);
+        log:printError("Response is not http type", err = resp);
     }
     return null;
 }
