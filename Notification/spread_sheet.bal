@@ -27,6 +27,7 @@ function getDetailsFromGSheet() returns string[][]|error {
     return values;
 }
 
+//Create Person objects from the spread sheet values.
 function getAllCandidates() returns Person[] {
 
     Person[] candidates = [];
@@ -47,7 +48,6 @@ function getAllCandidates() returns Person[] {
                 string telephone = sanitizeAndReturnUntainted(value[2]);
                 Person person = new (name, address, telephone);
                 candidates[i-1] = person;
-
             }
             i += 1;
         }
@@ -55,6 +55,7 @@ function getAllCandidates() returns Person[] {
     return candidates;
 }
 
+//Check for validity of string type.
 function sanitizeAndReturnUntainted(string input) returns @untainted string {
     string regEx = "[^a-zA-Z]";
     return input.replace(regEx, "");

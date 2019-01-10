@@ -58,15 +58,14 @@ function getCustomEmailTemplate(string messageBody) returns string {
         emailTemplate = emailTemplate + "Below contains the available nearby friends for carpooling. \n";
         emailTemplate = emailTemplate + messageBody;
     }
-
     return emailTemplate;
 }
 
+//Create message including available carpooling details
 function createMessage(Person[] candidates) returns string{
     string message ="";
     foreach Person person in candidates {
         message += person.getName()+" - "+person.getLocation()+" - "+person.getTelephone()+"\n";
-
     }
     return message;
 }

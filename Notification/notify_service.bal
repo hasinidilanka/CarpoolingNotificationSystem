@@ -12,32 +12,23 @@ service hello on new http:Listener(9090) {
     }
 
     resource function notify(http:Caller caller, http:Request req) {
-
             var jsonRequest = req.getJsonPayload();
-
             if (jsonRequest is json) {
+                //Get email and location from the json payload.
+                string email= <string>jsonRequest.Email;
+                string location= <string>jsonRequest.Location;
 
-                string email;
-                string location;
-                email= <string>jsonRequest.Email;
-                location= <string>jsonRequest.Location;
-                io:println(email);
-                io:println(location);
-
+                //Send the notification to the provided email.
                 boolean status = notify(location, email);
 
+                //Send the response.
                 if (status == true){
                     var s =caller->respond("Successfull");
                 } else {
                     var ss= caller->respond("Not Successfull");
                 }
-
             } else {
-
                 log:printError("Error getting request", err = jsonRequest);
-
             }
-
     }
-    //}
 }
