@@ -11,6 +11,8 @@ Following are the steps that is used to implement the logic.
 - Identify the most suitable carpooling candidates. 
 - Notify the user about carpooling details via email.
 
+![Highlevel System Diagram](Images/notify_diagram.png)
+
 ## APIs
 
 Following are the three different APIs that are integrated in this system. 
