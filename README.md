@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/ballerina-guides/gmail-spreadsheet-integration.svg?branch=master)](https://travis-ci.org/ballerina-guides/gmail-spreadsheet-integration)
-
 # Carpooling Notification System
 
 Carpooling Notification System provides a Ballerina API  to send a notification about nearest available carpooling options using a users' location.
