@@ -13,12 +13,10 @@ function notify(string location, string email) returns boolean{
     //Select the most suitable candidates.
     Person[] selectedCandidates = getSelectedCandidates(location, destination, candidates);
 
-    //Create a message including details about the selected candidates
-    string message = createMessage(selectedCandidates);
-
     //Send email to the user
-    boolean isSuccess = sendEmail( email,  message);
+    boolean isSuccess = sendEmail( email, selectedCandidates);
 
     return isSuccess;
+    //return true;
 }
 

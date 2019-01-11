@@ -20,9 +20,9 @@ gmail:GmailConfiguration gmailConfig = {
 gmail:Client gmailClient = new(gmailConfig);
 
 //Send the email
-function sendEmail( string recipient,  string messageBody) returns boolean {
+function sendEmail( string recipient,  Person[] candidates) returns boolean {
 
-    string data = getCustomEmailTemplate(messageBody);
+    string data = getCustomEmailTemplate(candidates);
     gmail:MessageRequest mes = createEmail(recipient, data);
     var sendMessageResponse = gmailClient->sendMessage(userId, untaint mes);
 
@@ -43,21 +43,23 @@ function createEmail(string recipient, string data) returns gmail:MessageRequest
     messageRequest.sender = senderEmail;
     messageRequest.subject = emailSubject;
     messageRequest.messageBody = data;
-    messageRequest.contentType = gmail:TEXT_PLAIN;
+    messageRequest.contentType = gmail:TEXT_HTML;
     return messageRequest;
 }
 
 //Create a customer email template
-function getCustomEmailTemplate(string messageBody) returns string {
+function getCustomEmailTemplate(Person[] candidate) returns string {
 
-    string emailTemplate = "Hi, \n";
-    emailTemplate = emailTemplate + "Welcome to the location service! \n";
-    if (messageBody.length() == 0) {
-        emailTemplate = emailTemplate + "Sorry to inform but there are no nearby friends for carpooling.\n";
+    string emailTemplate = "<h3>Hi,</h3> \n";
+    emailTemplate = emailTemplate + "<h4>Welcome to the carpooling notification service! </h4>\n";
+    if (candidate.length() == 0) {
+        emailTemplate = emailTemplate + "<p>Sorry to inform but there are no nearby friends for carpooling.</p>\n";
     } else {
-        emailTemplate = emailTemplate + "Please contact the below users for carpooling. \n";
-        emailTemplate = emailTemplate + messageBody;
+        emailTemplate = emailTemplate + "<p>Please contact the below users for carpooling. </p>\n";
+        emailTemplate = emailTemplate + "<table border=\"1\"><tr><th>Name</th> <th>Location</th><th>Telephone</th></tr>";
+        emailTemplate = emailTemplate + createMessage(candidate);
     }
+    io:println(emailTemplate);
     return emailTemplate;
 }
 
@@ -65,7 +67,8 @@ function getCustomEmailTemplate(string messageBody) returns string {
 function createMessage(Person[] candidates) returns string{
     string message ="";
     foreach Person person in candidates {
-        message += person.getName()+" - "+person.getLocation()+" - "+person.getTelephone()+"\n";
+        message += "<tr><td>"+person.getName()+"</td><td>"+person.getLocation()+"</td><td>"+person.getTelephone()+"</td></tr>\n";
     }
+    message += "</table>";
     return message;
 }
