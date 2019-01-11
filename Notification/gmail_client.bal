@@ -55,7 +55,7 @@ function getCustomEmailTemplate(string messageBody) returns string {
     if (messageBody.length() == 0) {
         emailTemplate = emailTemplate + "Sorry to inform but there are no nearby friends for carpooling.\n";
     } else {
-        emailTemplate = emailTemplate + "Please contact the below contacts for carpooling. \n";
+        emailTemplate = emailTemplate + "Please contact the below users for carpooling. \n";
         emailTemplate = emailTemplate + messageBody;
     }
     return emailTemplate;
