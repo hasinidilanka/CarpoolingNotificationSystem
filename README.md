@@ -80,14 +80,21 @@ to access both APIs.
     ```
     ballerina run Notification/
     ```
-- Use Postman tool or curl commands to send the request.
+- Use the below curl command to send the request.
 
-![Sample request](Images/postman_request.png)
+    ```
+    curl -X POST \
+        http://localhost:9090/carpooling/notify \
+        -H 'cache-control: no-cache' \
+        -H 'content-type: application/json' \
+        -H 'postman-token: 1aca9f7c-9862-096a-cde6-b301dced1030' \
+        -d '{
+	        "Email":"john@example.com",
+	        "Location": "nugegoda"
+    }'
+    ```
 
-- Response from the Postman
+- Then a notification will be sent to john@example.com
 
-![Sample response](Images/postman_response.png)
-
-- Notification sent to user via email
-![Sample email](Images/email.png)
+![Sample email](Images/notification.png)
 
