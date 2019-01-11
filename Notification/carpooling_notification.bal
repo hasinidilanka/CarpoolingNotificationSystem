@@ -17,6 +17,5 @@ function notify(string location, string email) returns boolean{
     boolean isSuccess = sendEmail( email, selectedCandidates);
 
     return isSuccess;
-    //return true;
 }
 
